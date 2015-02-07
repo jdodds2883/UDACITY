@@ -425,7 +425,7 @@ var resizePizzas = function(size) {
   function determineDx (elem, size) {
     var oldwidth = elem.offsetWidth;
     var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
-      console.log(windowwidth);
+//      console.log(windowwidth);
     var oldsize = oldwidth / windowwidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -452,7 +452,9 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
       var dx = determineDx(document.querySelectorAll(".randomPizzaContainer"), size); // after console.log this variable it only needs to be calculated 1 time. I removed it from the for loop only to be calculated 1 time for every pizza size change
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {      
+//  document.querySelectorAll(".randomPizzaContainer").length never changed set to 100
+
+    for (var i = 0; i < 100; i++) {      
       var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
       document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
