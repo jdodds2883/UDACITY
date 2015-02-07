@@ -525,7 +525,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 35; i++) { // changed i<200 to i<35 it is excessive when there is only 8 collumns and 4 rows on most large screens
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
