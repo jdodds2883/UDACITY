@@ -501,10 +501,10 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
+  var cachedScrollTop = document.body.scrollTop; //This variable is essential to be able to obtain the scrolling offsets in both the vertical direction. By setting this variable outside the for statement it changed the last 10frames from 35ms on average to less than 1ms on my localhost.
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin((cachedScrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
