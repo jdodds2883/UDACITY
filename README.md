@@ -27,4 +27,5 @@ To optimize views/pizza.html, you will need to modify views/js/main.js until you
 5) set document.queryselectorAll to 100 - console.log showed no change in this calculated variable
 6) resized pizzaria.jpg -->> address huge image file that get resized much smaller. While this isn't affecting the main.js and not part of the index.html optimization ... it should be treated as such anyways
 7) Minified bootstrap-grid.css & created development version bootstrap-grid_development.css
+8) Inlined minified style.css into pizza.html
 
