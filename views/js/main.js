@@ -312,13 +312,13 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-      var dx = determineDx(document.getElementsByClassName(".randomPizzaContainer"), size); 
-	  // after console.log this variable it only needs to be calculated 1 time. I removed it from the for loop only to be calculated 1 time for every pizza size change
-	//  after going to a group study we learned there is a better way to select all the elements of a class. Updated to getElementsByClassName
+	  var pizzasize = document.getElementsByClassName(".randomPizzaContainer").length;
+//  document.querySelectorAll(".randomPizzaContainer").length never changes 
 
-    for (var i = 0; i < 100; i++) {      
-      var newwidth = (document.getElementsByClassName(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.getElementsByClassName(".randomPizzaContainer")[i].style.width = newwidth;
+    for (var i = 0; i < pizzasize; i++) { 
+		 var dx = determineDx(pizzasize[i], size); // after console.log this variable it only needs to be calculated 1 time. I removed it from the for loop only to be calculated 1 time for every pizza size change
+      var newwidth = (pizzasize[i].offsetWidth + dx) + 'px';
+      pizzasize[i].style.width = newwidth;
     }
   }
 
@@ -334,7 +334,6 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
-
 for (var i = 2; i < 100; i++) {
   var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
@@ -367,8 +366,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-	 //This variable is essential to be able to obtain the scrolling offsets in both the vertical direction. By setting this variable outside the for statement it changed the last 10frames from 35ms on average to less than 1ms on my localhost.
-  var cachedScrollTop = document.body.scrollTop;
+  var cachedScrollTop = document.body.scrollTop; //This variable is essential to be able to obtain the scrolling offsets in both the vertical direction. By setting this variable outside the for statement it changed the last 10frames from 35ms on average to less than 1ms on my localhost.
   var items = document.querySelectorAll('.mover');
   for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((cachedScrollTop / 1250) + (i % 5));
@@ -392,8 +390,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-	// changed i<200 to i<35 it is excessive when there is only 8 collumns and 4 rows on most large screens
-  for (var i = 0; i < 35; i++) { 
+  for (var i = 0; i < 35; i++) { // changed i<200 to i<35 it is excessive when there is only 8 collumns and 4 rows on most large screens
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
