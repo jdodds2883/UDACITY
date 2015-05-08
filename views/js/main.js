@@ -318,7 +318,7 @@ var resizePizzas = function(size) {
 //  document.querySelectorAll("randomPizzaContainer").length never changes 
 
     for (var i = 0; i < pizzasize; i++) { 
-		 var dx = determineDx(pizzasize[i], size); // after console.log this variable it only needs to be calculated 1 time. I removed it from the for loop only to be calculated 1 time for every pizza size change
+	  var dx = determineDx(pizzasize[i], size); // after console.log this variable it only needs to be calculated 1 time. I removed it from the for loop only to be calculated 1 time for every pizza size change
       var newwidth = (pizzasize[i].offsetWidth + dx) + 'px';
       pizzasize[i].style.width = newwidth;
     }
