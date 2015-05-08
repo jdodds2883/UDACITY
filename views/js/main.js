@@ -13,6 +13,7 @@ String.prototype.capitalize = function() {
 
 // Pulls adjective out of array using random number sent from generator
 function getAdj(x){
+	"use strict";
   switch(x) {
     case "dark": 
       var dark = ["dark","morbid", "scary", "spooky", "gothic", "deviant", "creepy", "sadistic", "black", "dangerous", "dejected", "haunted", 
@@ -77,6 +78,7 @@ function getAdj(x){
 
 // Pulls noun out of array using random number sent from generator
 function getNoun(y) {
+	"use strict";
   switch(y) {
     case "animals": 
       var animals = ["flamingo", "hedgehog", "owl", "elephant", "pussycat", "alligator", "dachsund", "poodle", "beagle", "crocodile", "kangaroo", 
@@ -312,8 +314,8 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-	  var pizzasize = document.getElementsByClassName(".randomPizzaContainer").length;
-//  document.querySelectorAll(".randomPizzaContainer").length never changes 
+	  var pizzasize = document.getElementsByClassName("randomPizzaContainer").length;
+//  document.querySelectorAll("randomPizzaContainer").length never changes 
 
     for (var i = 0; i < pizzasize; i++) { 
 		 var dx = determineDx(pizzasize[i], size); // after console.log this variable it only needs to be calculated 1 time. I removed it from the for loop only to be calculated 1 time for every pizza size change
