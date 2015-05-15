@@ -315,11 +315,13 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {	  
-    for (var i = 0; i < pizzasize; i++) { 
-		var pizzasize = document.getElementsByClassName("randomPizzaContainer").length; // document.querySelectorAll("randomPizzaContainer") - better way with getElementsByClassName 
-      	var newwidth = (pizzasize[i].offsetWidth + dx) + 'px';
-		var dx = determineDx(pizzasize, size); // after console.log this variable it only needs to be calculated 1 time. I removed it from the for loop only to be calculated 1 time for every pizza size change
-      	pizzasize[i].style.width = newwidth;
+	var pizzaContainers = document.getElementsByClassName("randomPizzaContainer"); // removed the document.queryselector -- replaced with more efficient getElementsByClassName
+    var len = pizzaContainers.length; // Calculate pizzacontainers length before for statement
+    var dx = determineDx(pizzaContainers[0], size); // This remains constant only needs calculating one time. Move outside for loop
+    var newwidth = (pizzaContainers[0].offsetWidth + dx) + 'px'; // This is the new width of the pizza - just needs calculated oncse then applied to all
+	  // for loop goes through all elements class name randompizzacontainer and resizes them to the new variables above.
+    for (var i = 0; i < len; i++) {
+      pizzaContainers[i].style.width = newwidth;
     }
   }
 
@@ -369,9 +371,9 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
   var cachedScrollTop = document.body.scrollTop; //This variable is essential to be able to obtain the scrolling offsets in both the vertical direction. By setting this variable outside the for statement it changed the last 10frames from 35ms on average to less than 1ms on my localhost.
   var items = document.querySelectorAll('.mover');
-  var phase = Math.sin((cachedScrollTop / 1250) + (i % 5));
+  
   for (var i = 0; i < items.length; i++) {
-    
+    var phase = Math.sin((cachedScrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
